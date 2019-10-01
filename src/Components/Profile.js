@@ -24,10 +24,8 @@ class Profile extends React.Component {
 		let objectToSend = {
 			token: token
 			}
-			console.log('sent', objectToSend)
 		axios.post(`http://localhost:4000/profile`, objectToSend)
 			.then( res => {
-				console.log('res', res.data)
 					this.setState({
 						user: res.data
 					})
@@ -64,7 +62,6 @@ if (data) {
 		})
 	}	)
 
-
 	axios.post(`http://localhost:4000/checkIn`, {
 		qrcode: data,
 		eventid: usersEvent._id
@@ -72,15 +69,16 @@ if (data) {
 		.then(res => {
 
 			let stateCopy = this.state.user.usersEvents
-			stateCopy.map(	e => {
+			stateCopy = stateCopy.map(	e => {
 				if(e._id === usersEvent._id){
 					e.message = res.data
 					return e
 				}
-				this.setState({
-					usersEvents: stateCopy
-				})
+
 			}	)
+			this.setState({
+				usersEvents: stateCopy
+			})
 		}
  )
 		.catch(err => {console.log(err)})
