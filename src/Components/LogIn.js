@@ -109,6 +109,8 @@ class LogIn extends React.Component {
 
 			</div>
 
+			<span>{this.state.errorMsg}</span>
+
 			<p className="footer">
 				Don't have an account? <Link to="/signup">Sign Up</Link>
 			</p>
@@ -117,7 +119,7 @@ class LogIn extends React.Component {
 		</div>
 
 			</form>
-			<span>{this.state.errorMsg}</span>
+
 			</div>
 			</div>
 			</>

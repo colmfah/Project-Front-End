@@ -23,7 +23,7 @@ class SignUp extends React.Component {
 			location: ''
 		},
 
-		errorMsg: ''
+		errorMsg: 'Already have an account?'
 	}
 
 	changeField = (e, field) => {
@@ -36,15 +36,22 @@ class SignUp extends React.Component {
 		e.preventDefault()
 		axios.post(`${process.env.REACT_APP_API}/users`, this.state.user)
 		.then(res => {
-			res.data === 'You already registered'  ? 	this.setState({errorMsg:'You already registered. Please Log In'}): localStorage.setItem('token', res.data)}
+			if(res.data === 'You already registered'){
+				console.log(res.data)
+				this.setState({errorMsg:'You have already registered'})
+			} else{
+				localStorage.setItem('token', res.data)
+				this.props.history.push({
+					pathname: '/events'
+				})
 
+			}
+		}
 		)
 		.catch(err => {
 			console.log(err)
 		})
-		this.props.history.push({
-			pathname: '/events'
-		})
+
 	}
 
 
@@ -95,8 +102,9 @@ class SignUp extends React.Component {
 						<button className="primary group logo3"><strong>Signup</strong></button>
 
 					</div>
+
 				<p className="footer" >
-					Already have an account? <Link to="/login" style={{ textDecoration: 'none' }}>Login</Link>
+					{this.state.errorMsg} <Link to="/login" style={{ textDecoration: 'none' }}>Login</Link>
 				</p>
 
 				</div>
@@ -104,7 +112,7 @@ class SignUp extends React.Component {
 			</form>
 			</div>
 			</div>
-			<span>{this.state.errorMsg}</span>
+
 			</>
 		)
 }
