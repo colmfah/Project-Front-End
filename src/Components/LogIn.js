@@ -31,7 +31,7 @@ class LogIn extends React.Component {
 
 	login = (e) => {
 		e.preventDefault()
-			axios.post(`http://localhost:4000/login`, this.state.user)
+			axios.post(`${process.env.REACT_APP_API}/login`, this.state.user)
 			.then(
 				res => {
 					let token = res.data.token

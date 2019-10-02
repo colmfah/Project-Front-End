@@ -25,7 +25,7 @@ class Profile extends React.Component {
 		let objectToSend = {
 			token: token
 			}
-		axios.post(`http://localhost:4000/profile`, objectToSend)
+		axios.post(`${process.env.REACT_APP_API}/profile`, objectToSend)
 			.then( res => {
 					this.setState({
 						user: res.data
@@ -63,7 +63,7 @@ if (data) {
 		})
 	}	)
 
-	axios.post(`http://localhost:4000/checkIn`, {
+	axios.post(`${process.env.REACT_APP_API}/checkIn`, {
 		qrcode: data,
 		eventid: usersEvent._id
 	})

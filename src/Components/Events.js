@@ -21,7 +21,7 @@ class Events extends React.Component {
 
 
 componentDidMount(){
-		axios.get(`http://localhost:4000/events`)
+		axios.get(`${process.env.REACT_APP_API}/events`)
 		.then(res => {
 			this.setState({
 				events: res.data
@@ -48,21 +48,32 @@ componentDidMount(){
 				*/}
 
 
-				<div className="cardGrid">
-				{this.state.events.map(	(e,i) => {
-					return(
-						<div>
-						<Card
-							name={e.title}
-							location={e.location}
-							startDetails={e.startDetails}
-							price={e.price}
-							/>
-						</div>
-						)
-					}		)
-				}
-				</div>
+			<div
+			className="cardGrid"
+			>
+
+
+			{this.state.events.map(	(e,i) => {
+				return(
+
+
+				<Link to={`/events/${e._id}`}>
+					<Card
+						name={e.title}
+						location={e.location}
+						startDetails={e.startDetails}
+						price={e.price}
+						/>
+					</Link>
+
+					)
+				}		)
+			}
+			</div>}
+
+			{/*</div>*/}
+
+
 
 			</>
 		)

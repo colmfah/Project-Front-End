@@ -8,11 +8,19 @@ class Card extends React.Component {
   state = {};
   render() {
     return (
+      <card>
         <div className="card-container">
+          <div className="flipper">
 
-
-            <div className="front">
-
+            <div
+              className="front"
+              style={{
+                background: `url(${cardDefault})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat"
+              }}
+            >
               <div className="wrap">
                 <h2>
                   <strong>{this.props.name}</strong>
@@ -24,21 +32,15 @@ class Card extends React.Component {
                   ></i>
                   {this.props.location}
                 </small>
-								<div>
-								<small className="venue">
-									{moment(this.props.startDetails).format('D MMMM YYYY')}
-								</small>
-								</div>
-
               </div>
-
             </div>
 
 
 
-
-            {/*<div className="back">
-
+            <div className="back">
+              {/* <div className="logo-wrapper">
+                <i className="fas fa-ticket-alt" ></i>
+              </div> */}
               <div className="head-wrap">
                 <h1>{this.props.name}</h1>
               </div>
@@ -81,10 +83,13 @@ class Card extends React.Component {
                   <strong>Go To Event</strong>
                 </button>
               </Link>
-            </div>*/}
+            </div>
 
-        </div>
 
+
+          </div>
+        </div>{" "}
+      </card>
     );
   }
 }

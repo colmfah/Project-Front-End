@@ -31,7 +31,10 @@ class CreateEvent extends React.Component {
 	let objectToSend = {
 		token: token
 	}
-	axios.post(`http://localhost:4000/auth`, objectToSend)
+
+
+
+	axios.post(`${process.env.REACT_APP_API}/auth`, objectToSend)
 	.then( res => {
 		let userEvent = {
 			title: '',
@@ -87,7 +90,7 @@ class CreateEvent extends React.Component {
 
 	createEvent = (e) => {
 		e.preventDefault()
-		axios.post(`http://localhost:4000/events`, this.state.userEvent)
+		axios.post(`${process.env.REACT_APP_API}/events`, this.state.userEvent)
 		.then(res => {console.log(res)
 		})
 		.catch(err => {

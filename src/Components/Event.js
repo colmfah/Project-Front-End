@@ -44,7 +44,7 @@ class Event extends React.Component {
 
 
 componentDidMount(){
-	axios.get(`http://localhost:4000/events/${this.props.match.params.id}`)
+	axios.get(`${process.env.REACT_APP_API}/events/${this.props.match.params.id}`)
 		.then(res => {
 			this.setState({
 				event: res.data,
@@ -57,7 +57,7 @@ componentDidMount(){
 			let objectToSend = {
 				token: token
 			}
-			axios.post(`http://localhost:4000/auth`, objectToSend)
+			axios.post(`${process.env.REACT_APP_API}/auth`, objectToSend)
 			.then( res => {
 				this.setState({
 					purchaser: res.data._id

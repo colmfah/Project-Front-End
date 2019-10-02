@@ -34,7 +34,7 @@ class SignUp extends React.Component {
 
 	signup = (e) => {
 		e.preventDefault()
-		axios.post(`http://localhost:4000/users`, this.state.user)
+		axios.post(`${process.env.REACT_APP_API}/users`, this.state.user)
 		.then(res => {
 			res.data === 'You already registered'  ? 	this.setState({errorMsg:'You already registered. Please Log In'}): localStorage.setItem('token', res.data)}
 

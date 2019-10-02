@@ -31,7 +31,9 @@ class CheckoutForm extends Component {
 				numTicketsSought: this.props.numTicketsSought
 			}
 
-			axios.post(`http://localhost:4000/checkForTickets`, checkForTicketsObject)
+
+
+			axios.post(`${process.env.REACT_APP_API}/checkForTickets`, checkForTicketsObject)
 			.then(res => {
 				this.setState({
 					message: res.data.message
@@ -56,7 +58,8 @@ class CheckoutForm extends Component {
 									description: this.props.description,
 									source: res.token.id
 								}
-								axios.post(`http://localhost:4000/pay`, objectToSend)
+
+								axios.post(`${process.env.REACT_APP_API}/pay`, objectToSend)
 								.then( res => {
 									this.setState({
 										message: 'Payment Successful. Your tickets will be emailed in the next few minutes'
@@ -69,8 +72,7 @@ class CheckoutForm extends Component {
 									}
 
 
-
-									axios.post(`http://localhost:4000/ticket`, objectToSend)
+									axios.post(`${process.env.REACT_APP_API}/ticket`, objectToSend)
 									.then()
 									.catch(err => console.log(err))
 

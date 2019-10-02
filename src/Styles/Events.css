@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .cardGrid {
   display: grid;
   /* grid-template-columns: 250px 250px 250px auto; */
@@ -20,7 +25,7 @@
 
 }
 
-/* .individual-card{
+.box{
 	min-height: 200px;
 
-} */
+}
