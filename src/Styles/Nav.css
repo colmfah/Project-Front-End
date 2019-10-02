@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+#wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+label {
+  cursor: pointer;
+  outline: none;
+}
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #282526;
+  width: 240px;
+  height: 100%;
+  transform: translate3d(-240px, 0, 0);
+  transition: transform 0.35s;
+}
+label.menu-toggle {
+  position: absolute;
+  right: -60px;
+  width: 60px;
+  height: 60px;
+  line-height: 0px;
+  display: block;
+  padding: 0;
+  text-indent: -9999px;
+  background: #282526
+    url(https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png)
+    50% 50% / 25px 25px no-repeat;
+}
+.logo-container {
+  position: relative;
+  padding: 20% 0;
+}
+
+#ticket {
+  border: black 1.5px dotted;
+  padding: 8.5px 7.5px;
+  border-radius: 50%;
+  color: black;
+  transform: scale(2.5) rotate(-45deg);
+  position: relative;
+  left: 43%;
+}
+
+#ticket:hover {
+  border-color: #ef5a00 !important;
+  transition: all 0.4s ease 0s;
+  color: #ef5a00;
+  transition: all 0.4s ease 0s;
+}
+ul li label {
+  font-family: "Varela Round", sans-serif;
+  display: block;
+  text-align: center;
+  padding: 0 20px;
+  line-height: 60px;
+  text-decoration: none;
+  color: #666;
+}
+
+ul li label:hover {
+  color: #ef5a00 !important;
+  transition: all 0.4s ease 0s;
+}
+/* hide inputs */
+.menu-checkbox {
+  display: none;
+}
+
+/* fade in checked menu */
+.menu-checkbox:checked + .menu {
+  transform: translate3d(0, 0, 0);
+}

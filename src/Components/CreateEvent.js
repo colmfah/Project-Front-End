@@ -3,7 +3,11 @@ import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import moment from "moment"
 import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css";
+import Nav from './Nav'
+import "react-datepicker/dist/react-datepicker.css"
+import backgroundDefault from "../images/background-default.jpg"
+import '../Styles/Form.css'
+
 
 class CreateEvent extends React.Component {
 
@@ -93,9 +97,9 @@ class CreateEvent extends React.Component {
 
 	logout = () => {
 		localStorage.removeItem('token')
-		{this.props.history.push({
+		this.props.history.push({
 			pathname: '/events'
-		})}
+		})
 	}
 
 
@@ -103,27 +107,57 @@ class CreateEvent extends React.Component {
 
 	  return (
 			<>
+			<div
+				className="b-ground"
+				style={{
+					backgroundImage: `url(${backgroundDefault})`,
+					backgroundSize: "cover",
+					backgroundPosition: "center",
+					backgroundRepeat: "no-repeat",
+					width: "100%",
+					height: "100%"
+				}}
+			>
+				<div
+					className="page-grid"
+					style={{
+						display: "grid",
+						gridTemplateColumns: "1fr auto 1fr "
+					}}
+				>
+				<Nav />
+
+
 			<form onSubmit={this.createEvent}>
+
+			<div className="content">
+				<div className="group logo3">
+
+				<i className="fas fa-ticket-alt logo group logo3 ticket-form"></i>
+
+					<div className="form-info">
+
 				{this.state.formFields.map((e,i) =>
-						<div key={i}>
-							<label>{e.label}</label>
+						<div className="group" key={i}>
+
 							<input
 								value={this.state.userEvent[e.value]}
 								required
 								onChange={(event) => this.changeField(event, e.value)}
 								type={e.type}
-								
+								placeholder={e.label}
+
 								/>
 						</div>
 					)
 				}
-				<select required value={this.state.userEvent.currency} onChange={(event) => this.changeField(event, 'currency')}>
+				<select className="group" required style={{textAlign: "left"}} value={this.state.userEvent.currency} onChange={(event) => this.changeField(event, 'currency')}>
 					<option value="EUR">EUR</option>
 					<option value="USD">USD</option>
 					<option value="NZD">NZD</option>
 				</select>
 
-				<div required>
+				<div required className="group">
 					Date & Time Event Starts: <DatePicker
 						timeIntervals={15}
 					  selected={this.state.userEvent.startDetails}
@@ -135,7 +169,7 @@ class CreateEvent extends React.Component {
 				</div>
 
 
-				<div>
+				<div className="group">
 					Date & Time Event Ends: <DatePicker
 						timeIntervals={15}
 						selected={this.state.userEvent.endDetails}
@@ -146,11 +180,17 @@ class CreateEvent extends React.Component {
 					/>
 				</div>
 
+				<div>{this.state.errorMsg}</div>
+				<button className="primary group logo3"><strong>Create</strong></button>
 
-				<button>Create Event</button>
+			</div>
+
+		</div>
+	</div>
 			</form>
-			<div>{this.state.errorMsg}</div>
-			<button onClick={this.logout}>Log Out</button>
+			</div>
+			</div>
+
 			</>
 		)
 }

@@ -4,6 +4,7 @@ import axios from 'axios'
 import moment from "moment"
 import {Link} from 'react-router-dom'
 import QrReader from 'react-qr-reader'
+import Nav from './Nav'
 
 class Profile extends React.Component {
 
@@ -96,6 +97,7 @@ console.error(err)
 
 	  return (
 			<>
+				<Nav />
 				<div>{this.state.user.name}</div>
 				<div>{this.state.user.location}</div>
 				<div>{this.state.user.email}</div>

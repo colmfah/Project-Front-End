@@ -1,8 +1,11 @@
 import React from 'react'
 import axios from 'axios'
 import moment from "moment"
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import CheckoutForm from './CheckoutForm';
+import {Elements, StripeProvider} from 'react-stripe-elements'
+import CheckoutForm from './CheckoutForm'
+import Nav from './Nav'
+import '../Styles/Stripe.css'
+
 
 class Event extends React.Component {
 
@@ -79,6 +82,7 @@ changeNumTickets = (e) => {
 
 	  return (
 			<>
+			<Nav />
 			<div>Single Event Details</div>
 			<hr />
 			<div>{this.state.event.title} </div>

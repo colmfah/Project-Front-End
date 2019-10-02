@@ -1,5 +1,10 @@
 import React from 'react'
 import axios from 'axios'
+import '../Styles/Form.css'
+import {Link} from 'react-router-dom'
+import Nav from './Nav'
+import '../Styles/Form.css'
+import backgroundDefault from "../images/background-default.jpg";
 
 class SignUp extends React.Component {
 
@@ -47,24 +52,66 @@ class SignUp extends React.Component {
 
 	  return (
 			<>
+			<div
+        className="b-ground"
+        style={{
+  				backgroundImage: `url(${backgroundDefault})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          width: "100%",
+          height: "100%"
+        }}
+      >
+        <div
+          className="page-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr auto 1fr "
+          }}
+        >
+		<Nav />
 			<form onSubmit={this.signup}>
-				{this.state.formFields.map((e,i) =>
-						<div key={i}>
-							<label>{e.label}</label>
-							<input
-								value={this.state.user[e.value]}
-								required
-								onChange={(event) => this.changeField(event, e.value)}
-								type={e.type}/>
-						</div>
-					)
-				}
-				<button>Signup</button>
+
+			<div className="content">
+				<div className="group logo3">
+
+				<i className="fas fa-ticket-alt logo group logo3 ticket-form"></i>
+
+					<div className="form-info">
+
+						{this.state.formFields.map((e,i) =>
+								<div className="group" key={i}>
+									<label>{e.label}</label>
+									<input
+										value={this.state.user[e.value]}
+										required
+										onChange={(event) => this.changeField(event, e.value)}
+										type={e.type}/>
+									</div>
+							)
+						}
+
+						<button className="primary group logo3"><strong>Signup</strong></button>
+
+					</div>
+				<p className="footer" >
+					Already have an account? <Link to="/login" style={{ textDecoration: 'none' }}>Login</Link>
+				</p>
+
+				</div>
+			</div>
 			</form>
+			</div>
+			</div>
 			<span>{this.state.errorMsg}</span>
 			</>
 		)
 }
 }
+
+
+
+
 
 export default SignUp

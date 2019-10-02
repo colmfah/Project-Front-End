@@ -5,9 +5,8 @@ import CreateEvent from './CreateEvent'
 import SignUp from './SignUp'
 import Events from './Events'
 import Event from './Event'
-import ShowQRCode from './QRCode'
 import Profile from './Profile'
-import CheckIn from './CheckIn'
+import ShowQRCode from './QRCode'
 
 class Routes extends React.Component {
 
@@ -29,7 +28,6 @@ class Routes extends React.Component {
 	  return (
 			<BrowserRouter>
 				<Switch>
-					<Route path='/checkin' render={ () => this.tokenCheck() ? <CheckIn /> : <Redirect to="/login" /> }/>
 					<Route path='/createevent' render={ () => this.tokenCheck() ? <CreateEvent /> : <Redirect to="/login" /> }/>
 					<Route path='/events/:id' component={Event} />
 					<Route path='/events' component={Events} />

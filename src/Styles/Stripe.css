@@ -1,0 +1,12 @@
+.checkout {
+  background: #282526;
+  color: #666;
+  padding: 50px;
+  width: 400px;
+  margin: 0 auto;
+  border: 5px white solid;
+  position: absolute;
+  top: 10px;
+  left: 240px;
+  box-shadow: 0 2px 200px rgba(0, 0, 0, 0.5);
+}
