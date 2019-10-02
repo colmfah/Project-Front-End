@@ -36,33 +36,37 @@ componentDidMount(){
 
 	  return (
 			<>
-				<Nav />
-				{/*<div
-					id='background image'
+			<Nav />
+				<div
 					className="backgroundEvents"
 					style={{
-						backgroundColor: "blue"
+						backgroundImage: `url(${backgroundEvents})`,
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+						backgroundRepeat: "no-repeat",
+						width: "100vw",
+						height: "100vh"
 					}}
 				>
-				THIS DIV IS GONE. BACKGROUND IMAGE SET IN CARD GRID CLASS
-				*/}
+			<div className="cardGrid">
+			{this.state.events.map(	(e,i) => {
+				return(
+					<div>
+					<Card
+						name={e.title}
+						location={e.location}
+						startDetails={e.startDetails}
+						price={e.price}
+						/>
+					</div>
+					)
+				}		)
+			}
+			</div>
+
+			</div>
 
 
-				<div className="cardGrid">
-				{this.state.events.map(	(e,i) => {
-					return(
-						<div>
-						<Card
-							name={e.title}
-							location={e.location}
-							startDetails={e.startDetails}
-							price={e.price}
-							/>
-						</div>
-						)
-					}		)
-				}
-				</div>
 
 			</>
 		)
