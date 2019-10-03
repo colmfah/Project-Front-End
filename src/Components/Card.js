@@ -11,7 +11,14 @@ class Card extends React.Component {
         <div className="card-container">
 
 
-            <div className="front">
+            <div
+							className="front"
+							style={{backgroundImage: `url(${this.props.image})`,
+							backgroundSize: "cover",
+							backgroundPosition: "center",
+							backgroundRepeat: "no-repeat"
+						}}>
+							>
 
               <div className="wrap">
                 <h2>

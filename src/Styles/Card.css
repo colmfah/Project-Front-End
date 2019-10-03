@@ -46,10 +46,6 @@ a{
   text-align: center;
   font-weight: bold;
   display: grid;
-	background-image: url('../images/card-default.jpg');
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
 }
 
 .back {

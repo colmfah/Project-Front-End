@@ -63,15 +63,15 @@ componentDidMount(){
 						location={e.location}
 						startDetails={e.startDetails}
 						price={e.price}
+						image={e.imageURL}
 						/>
 					</Link>
 
 					)
 				}		)
 			}
-			</div>}
+			</div>
 
-			{/*</div>*/}
 
 
 

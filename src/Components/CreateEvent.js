@@ -20,10 +20,14 @@ class CreateEvent extends React.Component {
 			{label:'Price', type:'number', value:'price'}
 		],
 
+		eventToSend: {},
+
 		userEvent: {},
 		errorMsg: ''
 
 	}
+
+
 
 
 	componentDidMount(){
@@ -58,7 +62,16 @@ class CreateEvent extends React.Component {
 	changeField = (e, field) => {
 		let userEvent = this.state.userEvent
 
-		if(field === 'startDetails' || field === 'endDetails'){
+		if(field === 'image' ){
+			let data = new FormData()
+			data.append('file', e.target.files[0])
+			this.setState({
+				eventToSend: data
+			})
+
+		}
+
+		else if(field === 'startDetails' || field === 'endDetails'){
 
 				if(field === 'startDetails' && moment().isAfter(e)){
 					this.setState({
@@ -90,12 +103,29 @@ class CreateEvent extends React.Component {
 
 	createEvent = (e) => {
 		e.preventDefault()
-		axios.post(`${process.env.REACT_APP_API}/events`, this.state.userEvent)
-		.then(res => {console.log(res)
-		})
+
+		let data = this.state.eventToSend
+
+		data.append('title', this.state.userEvent.title)
+		data.append('location', this.state.userEvent.location)
+		data.append('ticketNo', this.state.userEvent.ticketNo)
+		data.append('price', this.state.userEvent.price)
+		data.append('description', this.state.userEvent.description)
+		data.append('startDetails', this.state.userEvent.startDetails)
+		data.append('endDetails', this.state.userEvent.endDetails)
+		data.append('organiser', this.state.userEvent.organiser)
+		data.append('currency', this.state.userEvent.currency)
+		axios.post(`${process.env.REACT_APP_API}/image`, data)
+		.then(res => {console.log('imageres', res)})
+		.catch(err => {console.log('imgerr', err)})
+
+
+
+		/*axios.post(`${process.env.REACT_APP_API}/events`, this.state.userEvent)
+		.then()
 		.catch(err => {
 			console.log(err)
-		})
+		})*/
 	}
 
 	logout = () => {
@@ -182,6 +212,9 @@ class CreateEvent extends React.Component {
 						required
 					/>
 				</div>
+
+				<input type="file" onChange={(event) => this.changeField(event, 'image')} />
+
 
 				<div>{this.state.errorMsg}</div>
 				<button className="primary group logo3"><strong>Create</strong></button>
