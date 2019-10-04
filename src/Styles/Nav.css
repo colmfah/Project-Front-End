@@ -9,7 +9,7 @@ body {
 .titlebar {
   width: 100vw;
   height: 73px;
-  background-color: red;
+  background-color: #666;
   text-align: center;
   position: absolute;
   font-size: 38px;
