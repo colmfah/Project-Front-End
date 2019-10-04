@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import ProfileCard from "./ProfileCard";
 import PastEventCard from "./PastEventCard";
 
+
 class Profile extends React.Component {
   render() {
     return (

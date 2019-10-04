@@ -1,0 +1,16 @@
+.cardBack {
+  line-height: 1.3em;
+  border-radius: 7px;
+  color: #666;
+  background-color: #282526;
+  text-align: left;
+  text-indent: 5%;
+  font-size: 12px;
+  display: grid;
+  grid-auto-rows: 1fr 1fr 1fr 1fr 1fr;
+  height: 250px;
+  width: 200px;
+  min-height: 175px;
+  box-shadow: 5px 5px 5px black;
+  margin: 20px;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import '../Styles/profile-card.css'
 
 class ProfileCard extends React.Component {
   render() {
