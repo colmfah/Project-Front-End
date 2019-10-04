@@ -46,6 +46,10 @@ a{
   text-align: center;
   font-weight: bold;
   display: grid;
+	background-image: url('../images/card-default.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .back {
@@ -90,6 +94,8 @@ a{
   border: white 5px solid;
   margin: auto 12px 20px 12px;
   padding: 12.5px 0;
+  background-color: #666;
+  opacity: 0.75;
 }
 
 .head-wrap {

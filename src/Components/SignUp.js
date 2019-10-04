@@ -67,7 +67,7 @@ class SignUp extends React.Component {
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          height: "100%"
+          height: "100vh"
         }}
       >
         <div

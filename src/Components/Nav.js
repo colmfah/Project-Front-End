@@ -29,17 +29,18 @@ logout = () => {
 
   render() {
     return (
-      <nav>
-        <div>
+
+			<nav>
+        <body>
           <div id="wrapper">
             <input
               type="checkbox"
               id="menu"
               name="menu"
-              className="menu-checkbox"
+              class="menu-checkbox"
             />
             <div className="menu">
-              <label className="menu-toggle" htmlFor="menu">
+              <label className="menu-toggle" for="menu">
                 <span>Toggle</span>
               </label>
               <ul>
@@ -91,13 +92,17 @@ logout = () => {
 										 </Link>
 									 </div>
 									}
-
-
-							</ul>
+              </ul>
+            </div>
+            <div className="titlebar">
+              <i className="fas fa-ticket-alt ticketTitle"></i>
+              Eventzilla
             </div>
           </div>
-        </div>
+        </body>
       </nav>
+
+
     );
   }
 }

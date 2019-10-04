@@ -37,15 +37,6 @@ componentDidMount(){
 	  return (
 			<>
 				<Nav />
-				{/*<div
-					id='background image'
-					className="backgroundEvents"
-					style={{
-						backgroundColor: "blue"
-					}}
-				>
-				THIS DIV IS GONE. BACKGROUND IMAGE SET IN CARD GRID CLASS
-				*/}
 
 
 			<div
@@ -72,25 +63,10 @@ componentDidMount(){
 			}
 			</div>
 
-
-
-
 			</>
 		)
 }
 }
 
-{/*<div key={i}>
-<Link to={`/events/${e._id}`}>
- <div>{e.title} </div>
- <div>{e.description} </div>
- <div>{e.location} </div>
- <div>Starts: {moment(e.startDetails).format('D MMMM YYYY HH:mm')} </div>
- <div>Ends: {moment(e.endDetails).format('D MMMM YYYY HH:mm')} </div>
- <div>{this.state.currency[e.currency]}{e.price} {e.currency}  </div>
- <div>Organiser: {e.organiser.name}</div>
- <hr />
- </Link>
-</div>*/}
 
 export default Events

@@ -15,7 +15,7 @@ a{
   grid-template-rows: auto;
   grid-row-gap: 2.5%;
   grid-column-gap: 2.5%;
-  /* width: 100vw; */
+  /* width: auto; */
   height: 100vh;
 	/* padding: 75px 255px; */
   padding: 7.5% 17.5%;
