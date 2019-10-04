@@ -75,13 +75,14 @@ class Event extends React.Component {
   render() {
     return (
       <>
+
         <div className="backgroundGrid">
-          <Nav />
+
           <div className="contentGrid">
             <div
               className="eventImage"
               style={{
-                backgroundImage: `url(${eventImage})`,
+                backgroundImage: `url(${this.state.event.imageURL})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -96,20 +97,20 @@ class Event extends React.Component {
               <div className="logo-box">
                 <i className="fas fa-ticket-alt ticket-logo"></i>
               </div>
-              <h3>Organizer Presents:</h3>
-              <h1 className="title">Event Name</h1>
+              <h3>{this.state.event.organiser.name} Presents:</h3>
+              <h1 className="title">{this.state.event.title}</h1>
               <h3>
                 <i
                   className="far fa-calendar-check"
                   style={{ color: "#EF5A00" }}
                 ></i>{" "}
-                Date:{" "}
+                Date: {moment(this.state.event.startDetails).format('D MMMM')}
               </h3>
               <h3>
                 <i className="fas fa-dollar-sign" style={{ color: "#EF5A00" }}>
                   {" "}
                 </i>{" "}
-                Price:{" "}
+                Price: {this.state.currency[this.state.event.currency]}{this.state.event.price} {this.state.event.currency}
               </h3>
               <h3>
                 <i
@@ -118,86 +119,87 @@ class Event extends React.Component {
                 >
                   {" "}
                 </i>{" "}
-                Venue:{" "}
+                Venue: {this.state.event.location}
               </h3>
               <h3>
                 <i className="fas fa-clock" style={{ color: "#EF5A00" }}></i>{" "}
-                Doors:{" "}
-              </h3>
-              <h3>
-                <i
-                  className="fas fa-map-marker-alt"
-                  style={{ color: "#EF5A00" }}
-                ></i>
-                {"  "}City:{" "}
+                Doors: {moment(this.state.event.startDetails).format('HH:mm')}
               </h3>
             </div>
             <div className="description">
               <p>
                 <h3> Description: </h3>
-                Description about event Description about event Description
-                about event Description about event Description about event
-                Description about event Description about event Description
-                about event Description about event Description about event
-                Description about event Description about event Description
-                about event{" "}
+          			{this.state.event.description}
               </p>
             </div>
+
+					{
+
+						/*
+
+
+						We need to add some extra divs to the grid to enable the payment fucntionality on this page. I've put comments for each one below, by the code.
+
+						Div 1: This is just one input box for the user to select the number of tickets they want. All the coding is to make sure all the data goes in the right place.
+
+						It is appearing randomly if you un-console log it because there isn't a place for it in the grid.
+
+						<form onSubmit={this.buyTickets}>
+							{this.state.formFields.map((e,i) =>
+									<div key={i}>
+										<label>{e.label}</label>
+										<input
+											value={this.state.numTicketsSought}
+											required
+											onChange={this.changeNumTickets}
+											type={e.type}
+											min={1}
+											max={this.state.event.ticketsRemaining<10 ? this.state.event.ticketsRemaining : 10}
+											/>
+									</div>
+								)
+							}
+						</form>*/}
+
+						{/*
+							Div 2:
+							This shows three things. The price, the admin fee and the total charges and changes in real time as you change the quantity. Its not showing properly if you un-console log because there's no space for it in the css grid.
+
+							<div>Price: {this.state.numTicketsSought * this.state.event.price}</div>
+						<div>Admin Fee: {(0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>
+						<div>Total :{((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>*/}
+
+						{/*
+							Div 3:
+							This provides a short error message if the user does something wrong. It also provides updates as the purchase happens
+							<p>{this.state.errorMsg}</p>*/}
+
+						{/*
+							Div 4:
+							This is the stripe box. If you un-console log it currently pops up with Tony's styling
+
+							<StripeProvider apiKey='pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P'>
+							<div>
+								<Elements>
+									<CheckoutForm
+										total={((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price))}
+										currency={this.state.event.currency}
+										description={this.state.event.title}
+										purchaser = {this.state.purchaser}
+										event = {this.state.event._id}
+										numTicketsSought = {this.state.numTicketsSought}
+									/>
+								</Elements>
+							</div>
+						</StripeProvider>*/}
+
 
             <button className="eventButton" onClick="/CheckoutForm">
               Purchase tickets
             </button>
           </div>
         </div>
-        {/*<Nav />
 
-			<div>{this.state.event.title} </div>
-			<div>{this.state.event.description} </div>
-			<div>{this.state.event.location} </div>
-			<div>Starts: {moment(this.state.event.startDetails).format('D MMMM YYYY HH:mm')} </div>
-			<div>Ends: {moment(this.state.event.endDetails).format('D MMMM YYYY HH:mm')} </div>
-			<div>{this.state.currency[this.state.event.currency]}{this.state.event.price} {this.state.event.currency}  </div>
-			<div>Organiser: {this.state.event.organiser.name}</div>
-
-
-			<form onSubmit={this.buyTickets}>
-				{this.state.formFields.map((e,i) =>
-						<div key={i}>
-							<label>{e.label}</label>
-							<input
-								value={this.state.numTicketsSought}
-								required
-								onChange={this.changeNumTickets}
-								type={e.type}
-								min={1}
-								max={this.state.event.ticketsRemaining<10 ? this.state.event.ticketsRemaining : 10}
-								/>
-						</div>
-					)
-				}
-			</form>
-
-			<div>Price: {this.state.numTicketsSought * this.state.event.price}</div>
-			<div>Admin Fee: {(0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>
-			<div>Total :{((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>
-
-			<p>{this.state.errorMsg}</p>
-
-
-			<StripeProvider apiKey='pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P'>
-				<div>
-					<Elements>
-						<CheckoutForm
-							total={((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price))}
-							currency={this.state.event.currency}
-							description={this.state.event.title}
-							purchaser = {this.state.purchaser}
-							event = {this.state.event._id}
-							numTicketsSought = {this.state.numTicketsSought}
-						/>
-					</Elements>
-				</div>
-			</StripeProvider>*/}
       </>
     );
   }

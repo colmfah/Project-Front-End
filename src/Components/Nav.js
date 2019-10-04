@@ -31,16 +31,15 @@ logout = () => {
     return (
 
 			<nav>
-        <body>
           <div id="wrapper">
             <input
               type="checkbox"
               id="menu"
               name="menu"
-              class="menu-checkbox"
+              className="menu-checkbox"
             />
             <div className="menu">
-              <label className="menu-toggle" for="menu">
+              <label className="menu-toggle" htmlFor="menu">
                 <span>Toggle</span>
               </label>
               <ul>
@@ -99,7 +98,6 @@ logout = () => {
               Eventzilla
             </div>
           </div>
-        </body>
       </nav>
 
 
