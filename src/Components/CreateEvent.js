@@ -116,7 +116,11 @@ class CreateEvent extends React.Component {
 		data.append('organiser', this.state.userEvent.organiser)
 		data.append('currency', this.state.userEvent.currency)
 		axios.post(`${process.env.REACT_APP_API}/image`, data)
-		.then(res => {console.log('imageres', res)})
+		.then(res => {
+			this.props.history.push({
+				pathname: `/events/${res.data._id}`
+			})
+		})
 		.catch(err => {console.log('imgerr', err)})
 
 
