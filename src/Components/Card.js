@@ -1,5 +1,4 @@
 import React from "react";
-import cardDefault from "../images/card-default.jpg"
 import '../Styles/Card.css'
 import moment from "moment"
 
