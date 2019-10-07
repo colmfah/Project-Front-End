@@ -3,6 +3,7 @@ import Nav from "./Nav";
 import ProfileCard from "./ProfileCard";
 import PastEventCard from "./PastEventCard";
 import {Link} from 'react-router-dom'
+import QrReader from 'react-qr-reader'
 import axios from 'axios'
 import moment from "moment"
 import '../Styles/Profile.css'
@@ -110,7 +111,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="background-grid">
-        <Nav />
+
         <div className="user-info">
           <div className="user1">
             <div className="group logo-profile logo3">
@@ -164,11 +165,64 @@ class Profile extends React.Component {
           </div>
         </div>
         <div className="eventsICreated">
-          <div className="user1">
-            <div className="group logo-profile logo3 logo4">
-              <i className="fas fa-ticket-alt ticket-form"></i>
-            </div>
-            <div>
+
+
+
+						{this.state.user.usersEvents.map(	(e,i) => { return (<div key={i}>
+
+							<div className="user1">
+
+						<div className="group logo-profile logo3 logo4">
+								<i className="fas fa-ticket-alt ticket-form"></i>
+						</div>
+
+
+						<div>
+
+							<h2 className="title1" style={{ color: "black" }}>
+								Your Eventzilla Event
+							</h2>
+							<h3 className="title1" style={{ color: "black" }}>
+								Event Title
+							</h3>
+							<p className="title1">{e.title}</p>
+
+							<h3 className="title1" style={{ color: "black" }}>
+								Tickets Sold
+							</h3>
+							<p className="title1">{e.ticketsSold.length}</p>
+							<h3 className="title1" style={{ color: "black" }}>
+								Tickets Remaining
+							</h3>
+							<p className="title1">{e.ticketNo - e.ticketsSold.length}</p>
+
+							<div>{e.message}</div>
+
+								{e.checkIn ? (
+									<div>
+										<button onClick={() =>this.turnScannerOnOff(e)}>Turn Check In On/Off</button>
+										<QrReader
+										delay={300}
+										onError={this.handleError}
+										onScan={(event) => this.handleScan(event, e)}
+										style={{ width: '100%' }}
+										/>
+									</div>
+
+								) : (
+									<button onClick={() =>this.turnScannerOnOff(e)}>Turn Check In On/Off</button>
+								)}
+
+
+								</div>
+
+								</div>
+
+
+							</div>)}		)}
+
+
+            {/*<div>
               <h2 className="title1" style={{ color: "black" }}>
                 Your Eventzilla Event
               </h2>
@@ -184,10 +238,13 @@ class Profile extends React.Component {
                 Tickets Remaining
               </h3>
               <p className="title1">Too many</p>
-            </div>
+            </div>*/}
+
+
+
           </div>
         </div>
-      </div>
+  
     );
   }
 }
