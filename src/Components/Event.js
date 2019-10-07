@@ -88,8 +88,7 @@ class Event extends React.Component {
                 backgroundRepeat: "no-repeat",
                 width: "50vw",
                 height: "50vh",
-                minmax: "200px auto",
-                overflow: "visible"
+                minmax: "200px auto"
               }}
             ></div>
 
@@ -132,6 +131,45 @@ class Event extends React.Component {
           			{this.state.event.description}
               </p>
             </div>
+            <form onSubmit={this.buyTickets} className="buyTix">
+              {this.state.formFields.map((e, i) => (
+                <div key={i}>
+                  <label>{e.label}</label>
+                  <input
+                    value={this.state.numTicketsSought}
+                    required
+                    onChange={this.changeNumTickets}
+                    type={e.type}
+                    min={1}
+                    max={
+                      this.state.event.ticketsRemaining < 10
+                        ? this.state.event.ticketsRemaining
+                        : 10
+                    }
+                  />
+                </div>
+              ))}
+              <div>
+                Price: {this.state.numTicketsSought * this.state.event.price}
+              </div>
+              <div>
+                Admin Fee:{" "}
+                {(
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
+              <div>
+                Total :
+                {(
+                  this.state.numTicketsSought * this.state.event.price +
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
+
+              <p>{this.state.errorMsg}</p>
+
 
 						<form onSubmit={this.buyTickets} className="buyTix">
               {this.state.formFields.map((e, i) => (
@@ -172,92 +210,32 @@ class Event extends React.Component {
 
               <p>{this.state.errorMsg}</p>
 
-              <StripeProvider apiKey="pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P">
-                <div>
-                  <Elements>
-                    <CheckoutForm
-                      total={
-                        this.state.numTicketsSought * this.state.event.price +
-                        0.69 +
-                        0.055 *
-                          this.state.numTicketsSought *
-                          this.state.event.price
-                      }
-                      currency={this.state.event.currency}
-                      description={this.state.event.title}
-                      purchaser={this.state.purchaser}
-                      event={this.state.event._id}
-                      numTicketsSought={this.state.numTicketsSought}
-                    />
-                  </Elements>
-                </div>
-              </StripeProvider>
-            </form>
+							<StripeProvider apiKey="pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P">
+								<div>
+									<Elements>
+										<CheckoutForm
+											total={
+												this.state.numTicketsSought * this.state.event.price +
+												0.69 +
+												0.055 *
+													this.state.numTicketsSought *
+													this.state.event.price
+											}
+											currency={this.state.event.currency}
+											description={this.state.event.title}
+											purchaser={this.state.purchaser}
+											event={this.state.event._id}
+											numTicketsSought={this.state.numTicketsSought}
+										/>
+									</Elements>
+								</div>
+							</StripeProvider>
+
+							</form>
 
 
 
 						{/*onClick="/CheckoutForm"*/}
-
-					{
-
-						/*
-
-
-						We need to add some extra divs to the grid to enable the payment fucntionality on this page. I've put comments for each one below, by the code.
-
-						Div 1: This is just one input box for the user to select the number of tickets they want. All the coding is to make sure all the data goes in the right place.
-
-						It is appearing randomly if you un-console log it because there isn't a place for it in the grid.
-
-						<form onSubmit={this.buyTickets}>
-							{this.state.formFields.map((e,i) =>
-									<div key={i}>
-										<label>{e.label}</label>
-										<input
-											value={this.state.numTicketsSought}
-											required
-											onChange={this.changeNumTickets}
-											type={e.type}
-											min={1}
-											max={this.state.event.ticketsRemaining<10 ? this.state.event.ticketsRemaining : 10}
-											/>
-									</div>
-								)
-							}
-						</form>*/}
-
-						{/*
-							Div 2:
-							This shows three things. The price, the admin fee and the total charges and changes in real time as you change the quantity. Its not showing properly if you un-console log because there's no space for it in the css grid.
-
-							<div>Price: {this.state.numTicketsSought * this.state.event.price}</div>
-						<div>Admin Fee: {(0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>
-						<div>Total :{((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price)).toFixed(2)}</div>*/}
-
-						{/*
-							Div 3:
-							This provides a short error message if the user does something wrong. It also provides updates as the purchase happens
-							<p>{this.state.errorMsg}</p>*/}
-
-						{/*
-							Div 4:
-							This is the stripe box. If you un-console log it currently pops up with Tony's styling
-
-							<StripeProvider apiKey='pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P'>
-							<div>
-								<Elements>
-									<CheckoutForm
-										total={((this.state.numTicketsSought * this.state.event.price) + 0.69 + (.055*this.state.numTicketsSought * this.state.event.price))}
-										currency={this.state.event.currency}
-										description={this.state.event.title}
-										purchaser = {this.state.purchaser}
-										event = {this.state.event._id}
-										numTicketsSought = {this.state.numTicketsSought}
-									/>
-								</Elements>
-							</div>
-						</StripeProvider>*/}
-
 
           </div>
         </div>
