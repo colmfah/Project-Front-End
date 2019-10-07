@@ -15,7 +15,7 @@ class CheckoutForm extends Component {
 
 
 	submit = (e) => {
-
+		e.preventDefault()
 		if(this.props.purchaser === ''){
 			this.setState({
 				message: 'You must log in to purchase tickets'

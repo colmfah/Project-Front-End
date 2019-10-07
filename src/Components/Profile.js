@@ -125,10 +125,11 @@ class Profile extends React.Component {
             </div>
           </div>
         </div>
-        {/*<div className="eventGrid">*/}
-					<h2 className="gridLabel">Upcoming Events</h2>
+        <div className="eventGrid">
+
           <div className="upcomingEvents">
 
+						<h2 className="gridLabel">Upcoming Events</h2>
 
 						{this.state.user.ticketsBought.length >0 ?
 							<div> {this.state.user.ticketsBought.map(	(e, i) => {return (
@@ -159,7 +160,7 @@ class Profile extends React.Component {
 
 
 
-          {/*</div>*/}
+          </div>
 
 
          {/*<div className="pastEvents">
