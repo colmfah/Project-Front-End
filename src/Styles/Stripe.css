@@ -5,13 +5,14 @@ a {
 .checkout {
   background: #282526;
   color: #666;
-  padding: 50px;
-  width: 400px;
-  margin: 0 auto;
+  padding: 25px;
+  width: 275px;
+  margin: 120 auto;
   border: 5px white solid;
   border-radius: 8px;
   position: absolute;
-  top: 70px;
-  left: 240px;
+  margin-top: 15px;
+  line-height: 1.75em;
   box-shadow: 0 2px 200px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
 }
