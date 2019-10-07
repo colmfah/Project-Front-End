@@ -121,13 +121,14 @@ class Profile extends React.Component {
               <h2 className="title1" style={{ color: "black" }}>
                 <strong>Hello</strong>
               </h2>
-              <p className="title1">"User Name" </p>
+              <p className="title1">{this.state.user.name}</p>
             </div>
           </div>
         </div>
-        <div className="eventGrid">
+        {/*<div className="eventGrid">*/}
+					<h2 className="gridLabel">Upcoming Events</h2>
           <div className="upcomingEvents">
-            <h2 className="gridLabel">Upcoming Events</h2>
+
 
 						{this.state.user.ticketsBought.length >0 ?
 							<div> {this.state.user.ticketsBought.map(	(e, i) => {return (
@@ -158,12 +159,20 @@ class Profile extends React.Component {
 
 
 
-          </div>
-          <div className="pastEvents">
+          {/*</div>*/}
+
+
+         {/*<div className="pastEvents">
             <h2 className="gridLabel">Past Events</h2>
             <PastEventCard />
-          </div>
+          </div>*/}
+
+
+
         </div>
+
+
+
         <div className="eventsICreated">
 
 
@@ -221,30 +230,9 @@ class Profile extends React.Component {
 
 							</div>)}		)}
 
-
-            {/*<div>
-              <h2 className="title1" style={{ color: "black" }}>
-                Your Eventzilla Event
-              </h2>
-              <h3 className="title1" style={{ color: "black" }}>
-                Event Title
-              </h3>
-              <p className="title1">Event Extravaganza of the Year</p>
-              <h3 className="title1" style={{ color: "black" }}>
-                Tickets Sold
-              </h3>
-              <p className="title1">Not enough</p>
-              <h3 className="title1" style={{ color: "black" }}>
-                Tickets Remaining
-              </h3>
-              <p className="title1">Too many</p>
-            </div>*/}
-
-
-
           </div>
         </div>
-  
+
     );
   }
 }

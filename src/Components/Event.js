@@ -133,6 +133,71 @@ class Event extends React.Component {
               </p>
             </div>
 
+						<form onSubmit={this.buyTickets} className="buyTix">
+              {this.state.formFields.map((e, i) => (
+                <div key={i}>
+                  <label>{e.label}</label>
+                  <input
+                    value={this.state.numTicketsSought}
+                    required
+                    onChange={this.changeNumTickets}
+                    type={e.type}
+                    min={1}
+                    max={
+                      this.state.event.ticketsRemaining < 10
+                        ? this.state.event.ticketsRemaining
+                        : 10
+                    }
+                  />
+                </div>
+              ))}
+              <div>
+                Price: {this.state.numTicketsSought * this.state.event.price}
+              </div>
+              <div>
+                Admin Fee:{" "}
+                {(
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
+              <div>
+                Total :
+                {(
+                  this.state.numTicketsSought * this.state.event.price +
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
+
+              <p>{this.state.errorMsg}</p>
+
+              <StripeProvider apiKey="pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P">
+                <div>
+                  <Elements>
+                    <CheckoutForm
+                      total={
+                        this.state.numTicketsSought * this.state.event.price +
+                        0.69 +
+                        0.055 *
+                          this.state.numTicketsSought *
+                          this.state.event.price
+                      }
+                      currency={this.state.event.currency}
+                      description={this.state.event.title}
+                      purchaser={this.state.purchaser}
+                      event={this.state.event._id}
+                      numTicketsSought={this.state.numTicketsSought}
+                    />
+                  </Elements>
+                </div>
+              </StripeProvider>
+            </form>
+
+
+
+						{/*onClick="/CheckoutForm"*/}
+
 					{
 
 						/*
@@ -194,9 +259,6 @@ class Event extends React.Component {
 						</StripeProvider>*/}
 
 
-            <button className="eventButton" onClick="/CheckoutForm">
-              Purchase tickets
-            </button>
           </div>
         </div>
 

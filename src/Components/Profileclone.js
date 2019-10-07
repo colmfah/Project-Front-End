@@ -117,7 +117,7 @@ console.error(err)
 
 
 			<h2>Events you are organising</h2>
-			{console.log()}
+
 
 			{this.state.user.usersEvents.map(	(e,i) => { return (<div key={i}>
 				<div>{i+1}</div>
@@ -157,3 +157,60 @@ console.error(err)
 }
 }
 export default withRouter(Profile)
+
+
+
+<div>
+
+
+	<h3 className="title1" style={{ color: "black" }}>
+		Tickets Sold
+	</h3>
+	<p className="title1">Not enough</p>
+	<h3 className="title1" style={{ color: "black" }}>
+		Tickets Remaining
+	</h3>
+	<p className="title1">Too many</p>
+</div>
+
+
+
+
+{this.state.user.usersEvents.map(	(e,i) => { return (<div key={i}>
+
+	<h2 className="title1" style={{ color: "black" }}>
+		Your Eventzilla Event
+	</h2>
+	<h3 className="title1" style={{ color: "black" }}>
+		Event Title
+	</h3>
+	<p className="title1">{e.title}</p>
+
+	<h3 className="title1" style={{ color: "black" }}>
+		Tickets Sold
+	</h3>
+	<p className="title1">{e.ticketsSold.length}</p>
+	<h3 className="title1" style={{ color: "black" }}>
+		Tickets Remaining
+	</h3>
+	<p className="title1">{e.ticketNo - e.ticketsSold.length}</p>
+
+	<div>{e.message}</div>
+
+		{e.checkIn ? (
+			<div>
+				<button onClick={() =>this.turnScannerOnOff(e)}>Turn Check In On/Off</button>
+				<QrReader
+				delay={300}
+				onError={this.handleError}
+				onScan={(event) => this.handleScan(event, e)}
+				style={{ width: '100%' }}
+				/>
+			</div>
+
+		) : (
+			<button onClick={() =>this.turnScannerOnOff(e)}>Turn Check In On/Off</button>
+		)}
+
+
+	</div>)}		)}
