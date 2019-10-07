@@ -6,125 +6,107 @@ import DatePicker from "react-datepicker";
 import Nav from "./Nav";
 import "react-datepicker/dist/react-datepicker.css";
 import backgroundDefault from "../images/background-default.jpg";
-import "../Styles/Form.css";
+// import "../Styles/Form.css";
 
 class CreateEvent extends React.Component {
+  state = {
+    formFields: [
+      { label: "Title", type: "text", value: "title" },
+      { label: "Location", type: "text", value: "location" },
+      { label: "Number of Tickets", type: "number", value: "ticketNo" },
+      { label: "Description", type: "text", value: "description" },
+      { label: "Price", type: "number", value: "price" }
+    ],
 
-	state = {
-		formFields: [
-			{label:'Title', type:'text', value:'title'},
-			{label:'Location', type:'text', value:'location'},
-			{label:'Number of Tickets', type:'number', value:'ticketNo'},
-			{label:'Description', type:'text', value:'description'},
-			{label:'Price', type:'number', value:'price'}
-		],
+    eventToSend: {},
 
-		eventToSend: {},
+    userEvent: {},
+    errorMsg: ""
+  };
 
-		userEvent: {},
-		errorMsg: ''
+  componentDidMount() {
+    let token = localStorage.getItem("token");
+    let objectToSend = {
+      token: token
+    };
 
-	}
+    axios.post(`${process.env.REACT_APP_API}/auth`, objectToSend).then(res => {
+      let userEvent = {
+        title: "",
+        location: "",
+        ticketNo: "",
+        price: "",
+        description: "",
+        startDetails: "",
+        endDetails: "",
+        organiser: res.data._id,
+        currency: "EUR"
+      };
+      this.setState({
+        userEvent: userEvent
+      });
+    });
+  }
 
+  changeField = (e, field) => {
+    let userEvent = this.state.userEvent;
 
+    if (field === "image") {
+      let data = new FormData();
+      data.append("file", e.target.files[0]);
+      this.setState({
+        eventToSend: data
+      });
+    } else if (field === "startDetails" || field === "endDetails") {
+      if (field === "startDetails" && moment().isAfter(e)) {
+        this.setState({
+          errorMsg: "Start date & time must be in the future"
+        });
+      } else if (
+        field === "endDetails" &&
+        moment(e).isBefore(this.state.startDetails)
+      ) {
+        this.setState({
+          errorMsg: "Event must end after it starts!"
+        });
+      } else {
+        userEvent[field] = e;
+        this.setState({
+          errorMsg: ""
+        });
+      }
+    } else {
+      userEvent[field] = e.target.value;
+    }
+    this.setState({ userEvent });
+  };
 
+  createEvent = e => {
+    e.preventDefault();
 
-	componentDidMount(){
-	let token = localStorage.getItem('token')
-	let objectToSend = {
-		token: token
-	}
+    let data = this.state.eventToSend;
 
+    data.append("title", this.state.userEvent.title);
+    data.append("location", this.state.userEvent.location);
+    data.append("ticketNo", this.state.userEvent.ticketNo);
+    data.append("price", this.state.userEvent.price);
+    data.append("description", this.state.userEvent.description);
+    data.append("startDetails", this.state.userEvent.startDetails);
+    data.append("endDetails", this.state.userEvent.endDetails);
+    data.append("organiser", this.state.userEvent.organiser);
+    data.append("currency", this.state.userEvent.currency);
+    axios
+      .post(`${process.env.REACT_APP_API}/image`, data)
+      .then(res => {
+        this.props.history.push({
+          pathname: `/events/${res.data._id}`
+        });
+      })
+      .catch(err => {
+        console.log("imgerr", err);
+      });
 
-
-	axios.post(`${process.env.REACT_APP_API}/auth`, objectToSend)
-	.then( res => {
-		let userEvent = {
-			title: '',
-			location: '',
-			ticketNo: '',
-			price: '',
-			description: '',
-			startDetails: '',
-			endDetails:'',
-			organiser: res.data._id,
-			currency: 'EUR'
-		}
-		this.setState({
-			userEvent: userEvent
-		})
-	}
-)
-}
-
-
-	changeField = (e, field) => {
-		let userEvent = this.state.userEvent
-
-		if(field === 'image' ){
-			let data = new FormData()
-			data.append('file', e.target.files[0])
-			this.setState({
-				eventToSend: data
-			})
-
-		}
-
-		else if(field === 'startDetails' || field === 'endDetails'){
-
-				if(field === 'startDetails' && moment().isAfter(e)){
-					this.setState({
-						errorMsg: 'Start date & time must be in the future'
-					})
-				}
-
-				else if(field === 'endDetails' && moment(e).isBefore(this.state.startDetails)){
-					this.setState({
-						errorMsg: 'Event must end after it starts!'
-					})
-				}
-
-				else{
-					userEvent[field] = e
-					this.setState({
-						errorMsg: ''
-					})
-				}
-
-		}
-
-		else{
-		userEvent[field] = e.target.value
-		}
-		this.setState({userEvent})
-	}
-
-
-	createEvent = (e) => {
-		e.preventDefault()
-
-		let data = this.state.eventToSend
-
-		data.append('title', this.state.userEvent.title)
-		data.append('location', this.state.userEvent.location)
-		data.append('ticketNo', this.state.userEvent.ticketNo)
-		data.append('price', this.state.userEvent.price)
-		data.append('description', this.state.userEvent.description)
-		data.append('startDetails', this.state.userEvent.startDetails)
-		data.append('endDetails', this.state.userEvent.endDetails)
-		data.append('organiser', this.state.userEvent.organiser)
-		data.append('currency', this.state.userEvent.currency)
-		axios.post(`${process.env.REACT_APP_API}/image`, data)
-		.then(res => {
-			this.props.history.push({
-				pathname: `/events/${res.data._id}`
-			})
-		})
-		.catch(err => {console.log('imgerr', err)})
-
-
-
-		/*axios.post(`${process.env.REACT_APP_API}/events`, this.state.userEvent)
+    /*axios.post(`${process.env.REACT_APP_API}/events`, this.state.userEvent)
   state = {
     formFields: [
       { label: "Title", type: "text", value: "title" },
@@ -245,8 +227,7 @@ class CreateEvent extends React.Component {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             width: "100%",
-            height: "150vh",
-            overflow: "visible"
+            minHeight: "100vh"
           }}
         >
           <div
@@ -329,6 +310,7 @@ class CreateEvent extends React.Component {
                       type="file"
                       onChange={event => this.changeField(event, "image")}
                     />
+                    <label for="picUpload">Upload an image</label>
 
                     <div>{this.state.errorMsg}</div>
                     <button className="primary group logo3">

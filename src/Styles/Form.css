@@ -6,28 +6,24 @@
   background-color: #666;
   border-radius: 15px;
   opacity: 0.9;
-  color: black;
+  color: #282526;
   box-shadow: 5px 5px 5px black;
   resize: both;
-  overflow: auto;
   min-width: 300px;
   max-width: 25vw;
   display: grid;
   grid-template-rows: auto 1fr auto;
   justify-content: center;
   margin: 130px 0;
-  overflow: wrap;
 }
 form {
   position: relative;
   height: 100%;
   width: auto;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0;
 }
-
+input[placeholder] {
+  color: #282526 !important;
+}
 .group {
   font-size: 1em;
   margin: 1.25em;
@@ -59,6 +55,7 @@ input {
   border: none;
   margin-left: 1.5em;
   text-indent: 4px;
+  color: #282526;
 }
 input:hover {
   -webkit-transform: scale(1.2);
@@ -67,7 +64,7 @@ input:hover {
 
 button {
   border: none;
-  width: 120px;
+  width: 140px;
   height: 30px;
   text-align: center;
   background-color: #282526;
@@ -119,4 +116,18 @@ button:hover {
 }
 .form-info {
   padding: 1.5em 0 0 0;
+}
+
+#picUpload {
+  opacity: 0;
+}
+
+#picUpload + label {
+  width: 200px;
+  height: 40px;
+  background: #888;
+  display: block;
+  color: #282526;
+  line-height: 2.5em;
+  border-radius: 5px;
 }
