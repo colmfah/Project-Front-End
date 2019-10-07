@@ -136,7 +136,14 @@ class Profile extends React.Component {
 
 								<div key={i}>
 
-								<div>{i+1}</div>
+								<ProfileCard
+									location={e.event.location}
+									title={e.event.title}
+									startDetails={e.event.startDetails}
+									randomNumber={e.randomNumber}
+								/>
+
+								{/*<div>{i+1}</div>
 								<div>{e.event.title}</div>
 								<div>{e.event.location}</div>
 								<div>Begins: {moment(e.event.startDetails).format('DD MMMM YYYY HH:mm')}</div>
@@ -144,8 +151,7 @@ class Profile extends React.Component {
 
 								<Link to={`/qr/${e.randomNumber}`}>
 								Click here to access your QR code to enter the event
-								</Link>
-								<hr />
+								</Link>*/}
 
 								</div>
 
