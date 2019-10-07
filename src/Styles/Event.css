@@ -19,7 +19,7 @@
   margin-top: 60px;
   grid-column-start: 3;
   grid-row-start: 1;
-  line-height: 1.75em;
+  line-height: 2em;
 }
 .eventImage {
   margin: 60px 0 0 0;
@@ -36,58 +36,53 @@
   font-size: 1.2em;
 }
 .buyTix {
+  top: -60px;
   grid-column-start: 3;
   grid-row-start: 2;
   text-align: left;
   line-height: 1.5em;
 }
-.eventButton {
-  width: 70%;
-  height: 30%;
-  font-size: 1.5em;
-  grid-column-start: 3;
-  grid-row-start: 3;
-  margin: 10%;
-}
-.eventButton:hover {
-  background: #ef5a00;
-  color: #282526 !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px;
-  -webkit-transform: scale(1.3);
-  transform: scale(1.3);
-  transition: all 0.3s ease 0s;
-}
-​
-.title {
+
+​ .title {
   text-shadow: 2px 2px 2px #282526;
   line-height: 1.2em;
   color: white;
   font-size: 50px;
   margin-bottom: 15px;
 }
-.logo-box {
-  margin: 10%;
-  position: relative;
-  padding: 5% 40%;
-  left: -175px;
-}
-​
-.ticket-logo {
+.logoBox {
   border: black 1.7px dotted;
-  padding: 8.5px 7.5px;
+  padding: 6px 7px;
   border-radius: 50%;
   color: black;
   transform: scale(2.5) rotate(-45deg);
-  position: relative;
+  position: absolute;
+  margin: 60px;
+  right: 350px;
+  top: 250px;
+  color: #ef5a00;
+  border-color: #ef5a00;
 }
-​
-.ticket-logo:hover {
+​ ​ .logoBox:hover {
   border-color: #ef5a00 !important;
   transition: all 0.4s ease 0s;
   color: #ef5a00;
   transition: all 0.4s ease 0s;
 }
+
+.checkout {
+  background: #282526;
+  color: #666;
+  padding: 25px;
+  width: 275px;
+  border: 5px white solid;
+  border-radius: 8px;
+  position: absolute;
+  margin-top: 25px;
+  line-height: 1.75em;
+  box-shadow: 0 2px 200px rgba(0, 0, 0, 0.5);
+}
+
 @media (max-width: 700px) {
   .backgroundGrid {
     height: auto;
