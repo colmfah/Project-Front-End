@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "./Nav";
 import ProfileCard from "./ProfileCard";
 import PastEventCard from "./PastEventCard";
+import '../Styles/Profile.css'
 
 
 class Profile extends React.Component {
