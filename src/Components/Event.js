@@ -75,9 +75,8 @@ class Event extends React.Component {
   render() {
     return (
       <>
-
+        <Nav />
         <div className="backgroundGrid">
-
           <div className="contentGrid">
             <div
               className="eventImage"
@@ -92,10 +91,10 @@ class Event extends React.Component {
               }}
             ></div>
 
+            <div className="logoBox">
+              <i className="fas fa-ticket-alt"></i>
+            </div>
             <div className="eventInfo">
-              <div className="logo-box">
-                <i className="fas fa-ticket-alt ticket-logo"></i>
-              </div>
               <h3>{this.state.event.organiser.name} Presents:</h3>
               <h1 className="title">{this.state.event.title}</h1>
               <h3>
@@ -103,13 +102,14 @@ class Event extends React.Component {
                   className="far fa-calendar-check"
                   style={{ color: "#EF5A00" }}
                 ></i>{" "}
-                Date: {moment(this.state.event.startDetails).format('D MMMM')}
+                Date: {moment(this.state.event.startDetails).format("D MMMM")}
               </h3>
               <h3>
                 <i className="fas fa-dollar-sign" style={{ color: "#EF5A00" }}>
                   {" "}
                 </i>{" "}
-                Price: {this.state.currency[this.state.event.currency]}{this.state.event.price} {this.state.event.currency}
+                Price: {this.state.currency[this.state.event.currency]}
+                {this.state.event.price} {this.state.event.currency}
               </h3>
               <h3>
                 <i
@@ -122,13 +122,13 @@ class Event extends React.Component {
               </h3>
               <h3>
                 <i className="fas fa-clock" style={{ color: "#EF5A00" }}></i>{" "}
-                Doors: {moment(this.state.event.startDetails).format('HH:mm')}
+                Doors: {moment(this.state.event.startDetails).format("HH:mm")}
               </h3>
             </div>
             <div className="description">
               <p>
                 <h3> Description: </h3>
-          			{this.state.event.description}
+                {this.state.event.description}
               </p>
             </div>
             <form onSubmit={this.buyTickets} className="buyTix">
@@ -169,85 +169,75 @@ class Event extends React.Component {
               </div>
 
               <p>{this.state.errorMsg}</p>
+            </form>
 
-							</form>
+            <form onSubmit={this.buyTickets} className="buyTix">
+              {this.state.formFields.map((e, i) => (
+                <div key={i}>
+                  <label>{e.label}</label>
+                  <input
+                    value={this.state.numTicketsSought}
+                    required
+                    onChange={this.changeNumTickets}
+                    type={e.type}
+                    min={1}
+                    max={
+                      this.state.event.ticketsRemaining < 10
+                        ? this.state.event.ticketsRemaining
+                        : 10
+                    }
+                  />
+                </div>
+              ))}
+              <div>
+                Price: {this.state.numTicketsSought * this.state.event.price}
+              </div>
+              <div>
+                Admin Fee:{" "}
+                {(
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
+              <div>
+                Total :
+                {(
+                  this.state.numTicketsSought * this.state.event.price +
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)}
+              </div>
 
-							<form onSubmit={this.buyTickets} className="buyTix">
-								{this.state.formFields.map((e, i) => (
-									<div key={i}>
-										<label>{e.label}</label>
-										<input
-											value={this.state.numTicketsSought}
-											required
-											onChange={this.changeNumTickets}
-											type={e.type}
-											min={1}
-											max={
-												this.state.event.ticketsRemaining < 10
-													? this.state.event.ticketsRemaining
-													: 10
-											}
-										/>
-									</div>
-								))}
-								<div>
-									Price: {this.state.numTicketsSought * this.state.event.price}
-								</div>
-								<div>
-									Admin Fee:{" "}
-									{(
-										0.69 +
-										0.055 * this.state.numTicketsSought * this.state.event.price
-									).toFixed(2)}
-								</div>
-								<div>
-									Total :
-									{(
-										this.state.numTicketsSought * this.state.event.price +
-										0.69 +
-										0.055 * this.state.numTicketsSought * this.state.event.price
-									).toFixed(2)}
-								</div>
+              <p>{this.state.errorMsg}</p>
 
-								<p>{this.state.errorMsg}</p>
+              <StripeProvider
+                className="checkout"
+                apiKey="pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P"
+              >
+                <div>
+                  <Elements>
+                    <CheckoutForm
+                      total={
+                        this.state.numTicketsSought * this.state.event.price +
+                        0.69 +
+                        0.055 *
+                          this.state.numTicketsSought *
+                          this.state.event.price
+                      }
+                      currency={this.state.event.currency}
+                      description={this.state.event.title}
+                      purchaser={this.state.purchaser}
+                      event={this.state.event._id}
+                      numTicketsSought={this.state.numTicketsSought}
+                    />
+                  </Elements>
+                </div>
+              </StripeProvider>
+            </form>
 
-								<StripeProvider apiKey="pk_test_RFZrPP1Ez6Bq8WArOADRk3gy0070dfs07P">
-									<div>
-										<Elements>
-											<CheckoutForm
-												total={
-													this.state.numTicketsSought * this.state.event.price +
-													0.69 +
-													0.055 *
-														this.state.numTicketsSought *
-														this.state.event.price
-												}
-												currency={this.state.event.currency}
-												description={this.state.event.title}
-												purchaser={this.state.purchaser}
-												event={this.state.event._id}
-												numTicketsSought={this.state.numTicketsSought}
-											/>
-										</Elements>
-									</div>
-								</StripeProvider>
-
-
-
-								</form>
-
-
-
-
-
-
-						{/*onClick="/CheckoutForm"*/}
-
-
-									</div>
-
+            {/*onClick="/CheckoutForm"*/}
+          </div>
         </div>
-
       </>
     );
   }
