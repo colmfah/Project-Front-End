@@ -113,32 +113,7 @@ console.error(err)
 
 
 
-			{this.state.user.ticketsBought.length >0 ?
-				<div> {this.state.user.ticketsBought.map(	(e, i) => {return (
 
-					<div key={i}>
-
-					<div>{i+1}</div>
-					<div>{e.event.title}</div>
-					<div>{e.event.location}</div>
-					<div>Begins: {moment(e.event.startDetails).format('DD MMMM YYYY HH:mm')}</div>
-					<div>Ends: {moment(e.event.endDetails).format('DD MMMM YYYY HH:mm')}</div>
-
-					<Link to={`/qr/${e.randomNumber}`}>
-					Click here to access your QR code to enter the event
-					</Link>
-					<hr />
-
-					</div>
-
-					)}	)}
-				</div>
-
-			 :
-			 <div>
-
-			 </div>
-			}
 
 
 			<h2>Events you are organising</h2>
