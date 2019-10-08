@@ -1,48 +1,41 @@
 import React from "react";
-import '../Styles/Card.css'
-import moment from "moment"
+import "../Styles/Card.css";
+import moment from "moment";
 
 class Card extends React.Component {
   state = {};
   render() {
     return (
-        <div className="card-container">
-
-
-            <div
-							className="front"
-							style={{backgroundImage: `url(${this.props.image})`,
-							backgroundSize: "cover",
-							backgroundPosition: "center",
-							backgroundRepeat: "no-repeat"
-						}}>
-							>
-
-              <div className="wrap">
-                <h2>
-                  <strong>{this.props.name}</strong>
-                </h2>
-                <small className="venue">
-                  <i
-                    className="fas fa-map-marker-alt"
-                    style={{ color: "#EF5A00" }}
-                  ></i>
-                  {this.props.location}
-                </small>
-								<div>
-								<small className="venue">
-									{moment(this.props.startDetails).format('D MMMM YYYY')}
-								</small>
-								</div>
-
-              </div>
-
+      <div className="card-container">
+        <div
+          className="front"
+          style={{
+            backgroundImage: `url(${this.props.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        >
+          <div className="wrap">
+            <h2>
+              <strong>{this.props.name}</strong>
+            </h2>
+            <small className="venue">
+              <i
+                className="fas fa-map-marker-alt"
+                style={{ color: "#EF5A00" }}
+              ></i>
+              {this.props.location}
+            </small>
+            <div>
+              <small className="venue">
+                {moment(this.props.startDetails).format("D MMMM YYYY")}
+              </small>
             </div>
+          </div>
+        </div>
 
-
-
-
-            {/*<div className="back">
+        {/*<div className="back">
 
               <div className="head-wrap">
                 <h1>{this.props.name}</h1>
@@ -87,9 +80,7 @@ class Card extends React.Component {
                 </button>
               </Link>
             </div>*/}
-
-        </div>
-
+      </div>
     );
   }
 }
