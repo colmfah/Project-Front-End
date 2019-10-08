@@ -257,16 +257,19 @@ class CreateEvent extends React.Component {
                           onChange={event => this.changeField(event, e.value)}
                           type={e.type}
                           placeholder={e.label}
+                          style={{ fontFamily: "Varela Round" }}
                         />
                       </div>
                     ))}
+
                     <select
                       className="group2"
                       required
                       style={{
                         textAlign: "left",
                         backgroundColor: "#888888",
-                        border: "none"
+                        border: "none",
+                        color: "#282526"
                       }}
                       value={this.state.userEvent.currency}
                       onChange={event => this.changeField(event, "currency")}
