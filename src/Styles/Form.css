@@ -46,7 +46,10 @@ input[placeholder] {
   justify-content: center;
   padding-bottom: 10%;
 }
-
+.heading {
+  margin-top: 15px;
+  text-align: center;
+}
 input {
   border-radius: 4px;
   height: 2.2em;
@@ -62,7 +65,7 @@ input:hover {
   transform: scale(1.2);
 }
 
-button {
+.primary {
   border: none;
   width: 140px;
   height: 30px;
@@ -79,7 +82,7 @@ button {
   box-shadow: 2px 2px 2px black;
 }
 
-button:hover {
+.primary:hover {
   background: #ef5a00;
   color: #282526 !important;
   font-weight: 700 !important;
