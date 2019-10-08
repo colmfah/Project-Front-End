@@ -4,7 +4,7 @@ import "../Styles/Form.css";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import "../Styles/Form.css";
-import orangeGreen from "../images/orangeGreen.jpg";
+import bground3 from "../images/bground3.jpg";
 
 class SignUp extends React.Component {
   state = {
@@ -57,7 +57,7 @@ class SignUp extends React.Component {
         <div
           className="b-ground"
           style={{
-            backgroundImage: `url(${orangeGreen})`,
+            backgroundImage: `url(${bground3})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
