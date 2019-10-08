@@ -4,7 +4,7 @@ class PastEventCard extends React.Component {
   render() {
     return (
       <div className="cardBack">
-        <div className="head-wrap">
+        <div className="headWrap">
           <h1>ABBA Karaoke</h1>
         </div>
         <p>
