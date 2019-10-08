@@ -101,7 +101,10 @@ class LogIn extends React.Component {
                   <span>{this.state.errorMsg}</span>
 
                   <p className="footer">
-                    Don't have an account? <Link to="/signup">Sign Up</Link>
+                    Don't have an account?{" "}
+                    <Link to="/signup" style={{ color: "#ef5a00" }}>
+                      Sign Up
+                    </Link>
                   </p>
                 </div>
               </div>

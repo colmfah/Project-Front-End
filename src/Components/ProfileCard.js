@@ -7,7 +7,7 @@ class ProfileCard extends React.Component {
   render() {
     return (
       <div className="cardBack">
-        <div className="head-wrap">
+        <div className="headWrap">
           <h1>Event Name</h1>
         </div>
         <p>

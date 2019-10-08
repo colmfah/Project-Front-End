@@ -99,7 +99,7 @@ class SignUp extends React.Component {
 
                   <p className="footer">
                     {this.state.errorMsg}{" "}
-                    <Link to="/login" style={{ textDecoration: "none" }}>
+                    <Link to="/login" style={{ color: "#ef5a00" }}>
                       Login
                     </Link>
                   </p>
