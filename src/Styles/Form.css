@@ -21,7 +21,7 @@ form {
   height: 100%;
   width: auto;
 }
-input[placeholder] {
+input::placeholder {
   color: #282526 !important;
 }
 .group {
