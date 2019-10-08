@@ -36,7 +36,7 @@
   font-size: 1.2em;
 }
 .buyTix {
-  top: -60px;
+  top: -120px;
   grid-column-start: 3;
   grid-row-start: 2;
   text-align: left;
@@ -50,41 +50,20 @@
   font-size: 50px;
   margin-bottom: 15px;
 }
-.logoBox {
-  border: black 1.7px dotted;
-  padding: 6px 7px;
-  border-radius: 50%;
-  color: black;
-  transform: scale(2.5) rotate(-45deg);
-  position: absolute;
-  margin: 60px;
-  right: 350px;
-  top: 250px;
-  color: #ef5a00;
-  border-color: #ef5a00;
-}
-​ ​ .logoBox:hover {
-  border-color: #ef5a00 !important;
-  transition: all 0.4s ease 0s;
-  color: #ef5a00;
-  transition: all 0.4s ease 0s;
-}
 
 .checkout {
-  background: #282526;
-  color: #666;
+  background: #888888;
+  color: #282526;
   padding: 25px;
   width: 275px;
-  border: 5px #666 solid;
+  border: 5px #282526 solid;
   border-radius: 8px;
   position: absolute;
-  margin-top: 25px;
-  line-height: 1.75em;
+  margin: 35px 0;
+  line-height: 1.5em;
   box-shadow: 0 2px 200px rgba(0, 0, 0, 0.5);
 }
-input {
-  background-color: #666;
-}
+
 @media (max-width: 700px) {
   .backgroundGrid {
     height: auto;
