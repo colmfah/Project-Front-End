@@ -23,6 +23,7 @@ form {
 }
 input::placeholder {
   color: #282526 !important;
+  font-size: 12px;
 }
 .group {
   font-size: 1em;

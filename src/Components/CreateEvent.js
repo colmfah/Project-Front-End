@@ -5,7 +5,7 @@ import moment from "moment";
 import DatePicker from "react-datepicker";
 import Nav from "./Nav";
 import "react-datepicker/dist/react-datepicker.css";
-import backgroundDefault from "../images/background-default.jpg";
+import colourfulBground from "../images/colourfulBground.jpg";
 // import "../Styles/Form.css";
 
 class CreateEvent extends React.Component {
@@ -222,7 +222,7 @@ class CreateEvent extends React.Component {
         <div
           className="b-ground"
           style={{
-            backgroundImage: `url(${backgroundDefault})`,
+            backgroundImage: `url(${colourfulBground})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
