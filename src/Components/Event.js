@@ -36,7 +36,7 @@ class Event extends React.Component {
     },
     numTicketsSought: 1,
     purchaser: "",
-    errorMsg: "Does this work",
+    errorMsg: "",
     total: 20
   };
 
@@ -71,6 +71,26 @@ class Event extends React.Component {
       numTicketsSought: Number(e.target.value)
     });
   };
+
+	displaySubTotal = () => {
+		return (this.state.numTicketsSought * this.state.event.price)
+
+	}
+
+	displayAdminFee = () => {
+		return           (
+                  0.69 +
+                  0.055 * this.state.numTicketsSought * this.state.event.price
+                ).toFixed(2)
+	}
+
+	displayTotal = () => {
+		return (
+			this.state.numTicketsSought * this.state.event.price +
+			0.69 +
+			0.055 * this.state.numTicketsSought * this.state.event.price
+		).toFixed(2)
+	}
 
   render() {
     return (
@@ -150,65 +170,18 @@ class Event extends React.Component {
                 </div>
               ))}
               <div>
-                Price: {this.state.numTicketsSought * this.state.event.price}
+                {`Price: `} {this.state.currency[this.state.event.currency]}{this.displaySubTotal()}
               </div>
               <div>
-                Admin Fee:{" "}
-                {(
-                  0.69 +
-                  0.055 * this.state.numTicketsSought * this.state.event.price
-                ).toFixed(2)}
+                {`Admin Fee: `}{this.state.currency[this.state.event.currency]}{this.displayAdminFee()}
               </div>
               <div>
-                Total :
-                {(
-                  this.state.numTicketsSought * this.state.event.price +
-                  0.69 +
-                  0.055 * this.state.numTicketsSought * this.state.event.price
-                ).toFixed(2)}
+                {`Total: `}
+                {this.state.currency[this.state.event.currency]}{this.displayTotal()}
               </div>
 
               <p>{this.state.errorMsg}</p>
-            </form>
 
-            <form onSubmit={this.buyTickets} className="buyTix">
-              {this.state.formFields.map((e, i) => (
-                <div key={i}>
-                  <label>{e.label}</label>
-                  <input
-                    value={this.state.numTicketsSought}
-                    required
-                    onChange={this.changeNumTickets}
-                    type={e.type}
-                    min={1}
-                    max={
-                      this.state.event.ticketsRemaining < 10
-                        ? this.state.event.ticketsRemaining
-                        : 10
-                    }
-                  />
-                </div>
-              ))}
-              <div>
-                Price: {this.state.numTicketsSought * this.state.event.price}
-              </div>
-              <div>
-                Admin Fee:{" "}
-                {(
-                  0.69 +
-                  0.055 * this.state.numTicketsSought * this.state.event.price
-                ).toFixed(2)}
-              </div>
-              <div>
-                Total :
-                {(
-                  this.state.numTicketsSought * this.state.event.price +
-                  0.69 +
-                  0.055 * this.state.numTicketsSought * this.state.event.price
-                ).toFixed(2)}
-              </div>
-
-              <p>{this.state.errorMsg}</p>
 
               <StripeProvider
                 className="checkout"
@@ -218,11 +191,7 @@ class Event extends React.Component {
                   <Elements>
                     <CheckoutForm
                       total={
-                        this.state.numTicketsSought * this.state.event.price +
-                        0.69 +
-                        0.055 *
-                          this.state.numTicketsSought *
-                          this.state.event.price
+                        this.displayTotal()
                       }
                       currency={this.state.event.currency}
                       description={this.state.event.title}

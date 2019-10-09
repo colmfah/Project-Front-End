@@ -8,7 +8,7 @@ class ProfileCard extends React.Component {
     return (
       <div className="cardBack">
         <div className="headWrap">
-          <h1>Event Name</h1>
+          <h1>{this.props.title}</h1>
         </div>
         <p>
           <i className="fas fa-map-marker-alt" style={{ color: "#EF5A00" }}></i>{" "}
