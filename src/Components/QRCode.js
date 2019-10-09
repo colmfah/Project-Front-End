@@ -1,4 +1,5 @@
 import React from 'react'
+import "../Styles/QRCode.css";
 var QRCode = require('qrcode.react')
 
 
@@ -19,9 +20,8 @@ componentDidMount(){
 
 	  return (
 			<>
-				<QRCode value={this.props.match.params.id} />
+				<QRCode value={this.props.match.params.id} className='QR' />
 
-				<h1>{this.props.match.params.id}</h1>
 			</>
 		)
 }
