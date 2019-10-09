@@ -112,6 +112,7 @@ class Profile extends React.Component {
               <p className="title1">{this.state.user.name}</p>
             </div>
           </div>
+					
         </div>
         <div className="eventGrid">
           <div className="upcomingEvents">
